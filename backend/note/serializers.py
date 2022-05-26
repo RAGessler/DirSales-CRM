@@ -5,5 +5,5 @@ from .models import Note
 class NoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Note
-        fields = ['id', 'contact', 'date', 'time', 'text']
+        fields = ['id', 'contact_id', 'date', 'time', 'text']
         depth = 1

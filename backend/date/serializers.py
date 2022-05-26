@@ -6,5 +6,5 @@ from .models import Date
 class DateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Date
-        fields = ['id', 'contact', 'user', 'title', 'time', 'text', 'date']
+        fields = ['id', 'contact_id', 'user_id', 'title', 'time', 'text', 'date']
         depth = 1
