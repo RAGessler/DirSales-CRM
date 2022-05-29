@@ -7,5 +7,5 @@ from contact.models import Contact
 class Note(models.Model):
     contact = models.ForeignKey(Contact, on_delete=models.CASCADE)
     date = models.DateField(auto_now_add=True)
-    time = models.TimeField()
+    time = models.TimeField(auto_now_add=True)
     text = models.CharField(max_length=255)
