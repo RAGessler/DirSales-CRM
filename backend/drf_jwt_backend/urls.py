@@ -23,5 +23,6 @@ urlpatterns = [
     path('api/contacts/', include('contact.urls')),
     path('api/dates/', include('date.urls')),
     path('api/interactions/', include('interaction.urls')),
-    path('api/notes/', include('note.urls'))
+    path('api/notes/', include('note.urls')),
+    path('api/tasks/', include('task.urls'))
 ]
