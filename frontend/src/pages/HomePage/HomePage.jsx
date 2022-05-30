@@ -26,12 +26,24 @@ const HomePage = () => {
     }
   };
   
+  function filterContacts(searchTerm){
+    let filteredContacts = userContacts.filter((contact)=>{
+      if (contact.tag === searchTerm){
+        return true;
+      }
+      else{
+        return false;
+      }})
+      setUserContacts(filteredContacts)
+  }
+  
   useEffect(() => {
     fetchUserContacts();
   }, [token]);
   return (
     <div className="return">
       <div className="contact-list">
+        <ContactList userContacts={userContacts} />
       </div>
       <div className="add-contact">
         <ContactForm getUserContacts={fetchUserContacts} />
