@@ -6,6 +6,9 @@ import ContactForm from "../../components/ContactForm/ContactForm";
 import ContactList from "../../components/ContactList/ContactList";
 import CalendarGrid from "../../components/CalendarGrid/CalendarGrid";
 import axios from "axios";
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
+
 
 const HomePage = () => {
   // The "user" value from this Hook contains the decoded logged in user information (username, first name, id)
@@ -14,6 +17,7 @@ const HomePage = () => {
   const [user, token] = useAuth();
   const [userContacts, setUserContacts] = useState([]);
   const [userDates, setUserDates]=useState([])
+  const [viewingContact, setViewingContact] = useState()
 
   const fetchUserContacts = async () => {
     try {
@@ -49,13 +53,11 @@ const HomePage = () => {
   return (
     <div className="return">
       <div className="contact-list">
-        <ContactList userContacts={userContacts} />
-      </div>
-      <div className="add-contact">
-        <ContactForm getUserContacts={fetchUserContacts} />
-      </div>
-      <div className="calendar">
-        <CalendarGrid userDates={userDates} />
+        <ContactList userContacts={userContacts} getUserContacts={fetchUserContacts} />
+        <Popup trigger={<button>Add Contact</button>} modal='true'>
+          <div><ContactForm getUserContacts={fetchUserContacts} /></div>
+        </Popup>
+
       </div>
     </div>
   );

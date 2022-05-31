@@ -5,36 +5,47 @@ import axios from "axios";
 import { URL_HOST } from "../../urlHost"
 
 let initialValues = {
-    user: "",
-    first_name: "",
-    last_name: "",
-    phone_number: "",
-    twitter_handle: "",
-    instagram_handle: "",
-    other_handle: "",
-    tag: ""
+first_name: "",
+last_name: "",
+phone_number: "",
+twitter_handle: "",
+instagram_handle: "",
+other_handle: "",
+tag: ""
 }
 
-const ContactForm = (props) =>{
+const UpdateContact = (props) =>{
+    initialValues = {
+        first_name: props.contact.first_name,
+        last_name: props.contact.last_name,
+        phone_number: props.contact.phone_number,
+        twitter_handle: props.contact.twitter_handle,
+        instagram_handle: props.contact.instagram_handle,
+        other_handle: props.contact.other_handle,
+        tag: props.contact.tag
+    }
     const [user, token] = useAuth();
     const [formData, handleInputChange, handleSubmit, reset] = useCustomForm(
         initialValues,
-        postNewContact
-    );
-
-    async function postNewContact(){
+        updateContact
+        );
+    
+        
+    async function updateContact(){
         try{
-            let response = await axios.post(`${URL_HOST}/api/contacts/`, formData,{
+            let response = await axios.patch(`${URL_HOST}/api/contacts/${props.contact.id}/`, formData,{
                 headers: {
                     Authorization: 'Bearer ' + token
                 }
             })
-            if (response.status === 201){
+            if (response.status === 202){
                 await props.getUserContacts(user.id)
+                alert('Success!')
             }
         }
         catch (error){
             console.log(error.message)
+            alert(error.message)
         }
     }
 
@@ -55,9 +66,9 @@ const ContactForm = (props) =>{
             <input type="text" name="other_handle" value={formData.other_handle} onChange={handleInputChange} />
             <label htmlFor="tag">Group</label>
             <input type="text" name="tag" value={formData.tag} onChange={handleInputChange} />
-            <button type="submit">Create</button>
+            <button type="submit">Submit Changes</button>
         </form>
 
     )
 }
-export default ContactForm;
+export default UpdateContact;
