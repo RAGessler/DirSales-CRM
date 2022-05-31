@@ -25,17 +25,7 @@ const HomePage = () => {
       console.log(error.response.data);
     }
   };
-  
-  function filterContacts(searchTerm){
-    let filteredContacts = userContacts.filter((contact)=>{
-      if (contact.tag === searchTerm){
-        return true;
-      }
-      else{
-        return false;
-      }})
-      setUserContacts(filteredContacts)
-  }
+
   
   useEffect(() => {
     fetchUserContacts();
