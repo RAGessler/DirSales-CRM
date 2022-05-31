@@ -4,7 +4,7 @@ import useAuth from "../../hooks/useAuth";
 import { URL_HOST } from "../../urlHost"
 import ContactForm from "../../components/ContactForm/ContactForm";
 import ContactList from "../../components/ContactList/ContactList";
-
+import CalendarGrid from "../../components/CalendarGrid/CalendarGrid";
 import axios from "axios";
 
 const HomePage = () => {
@@ -13,6 +13,8 @@ const HomePage = () => {
   //TODO: Add an AddCars Page to add a car for a logged in user's garage
   const [user, token] = useAuth();
   const [userContacts, setUserContacts] = useState([]);
+  const [userDates, setUserDates]=useState([])
+
   const fetchUserContacts = async () => {
     try {
       let response = await axios.get(`${URL_HOST}/api/contacts/`, {
@@ -26,9 +28,23 @@ const HomePage = () => {
     }
   };
 
+  const fetchUserDates = async ()=>{
+    try {
+      let response = await axios.get(`${URL_HOST}/api/dates/user`, {
+        headers: {
+          Authorization: "Bearer " + token
+        },
+      });
+      setUserDates(response.data);
+    } catch (error){
+      console.log(error.response.data);
+    }
+  }
+
   
   useEffect(() => {
     fetchUserContacts();
+    fetchUserDates()
   }, [token]);
   return (
     <div className="return">
@@ -37,6 +53,9 @@ const HomePage = () => {
       </div>
       <div className="add-contact">
         <ContactForm getUserContacts={fetchUserContacts} />
+      </div>
+      <div className="calendar">
+        <CalendarGrid userDates={userDates} />
       </div>
     </div>
   );
