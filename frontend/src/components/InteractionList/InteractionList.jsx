@@ -36,6 +36,7 @@ const InteractionList = (props)=>{
                 <thead>
                     <tr>
                         <th>Date</th>
+                        <th>Type</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,6 +44,7 @@ const InteractionList = (props)=>{
                         return(
                             <tr key={element}>
                                 <td>{interaction.date}</td>
+                                <td>{interaction.type}</td>
                             </tr>
                         )
                     })}

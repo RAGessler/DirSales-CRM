@@ -22,7 +22,7 @@ def contact_interactions(request, pk):
         serializer = InteractionSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save(contact_id=contact.id)
-            return Response(serializer.data)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 @api_view(['GET', 'PATCH', 'DELETE'])
 @permission_classes([IsAuthenticated])

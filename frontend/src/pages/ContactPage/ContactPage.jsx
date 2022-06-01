@@ -7,6 +7,7 @@ import axios from "axios";
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import { useParams } from "react-router-dom";
+import InteractionForm from "../../components/InteractionForm/InteractionForm";
 
 const ContactPage = () =>{
     const {contactId} = useParams()
@@ -27,7 +28,7 @@ const ContactPage = () =>{
         }
     }
 
-    const fetchContactInteractions = async()=>{
+    const fetchContactInteractions = async(contactId)=>{
         try{
             let response = await axios.get(`${URL_HOST}/api/interactions/contact/${contactId}/`,{
                 headers:{
@@ -42,7 +43,7 @@ const ContactPage = () =>{
     
     useEffect(()=>{
         fetchContactDetails()
-        fetchContactInteractions()
+        fetchContactInteractions(contactId)
     },[])
     return(
         <div>
@@ -56,6 +57,9 @@ const ContactPage = () =>{
             </ul>
             <div>
                 <InteractionList interactions={contactInteractions} />
+                <Popup trigger={<button>Add Interaction</button>} modal='true'>
+                <InteractionForm getContactInteractions={fetchContactInteractions} contact={contactObj} />
+                </Popup>
             </div>
         </div>
     )
