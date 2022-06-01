@@ -4,7 +4,6 @@ import useAuth from "../../hooks/useAuth";
 import { URL_HOST } from "../../urlHost"
 import ContactForm from "../../components/ContactForm/ContactForm";
 import ContactList from "../../components/ContactList/ContactList";
-import CalendarGrid from "../../components/CalendarGrid/CalendarGrid";
 import axios from "axios";
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
@@ -57,7 +56,6 @@ const HomePage = () => {
         <Popup trigger={<button>Add Contact</button>} modal='true'>
           <div><ContactForm getUserContacts={fetchUserContacts} /></div>
         </Popup>
-
       </div>
     </div>
   );

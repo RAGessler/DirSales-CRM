@@ -6,6 +6,7 @@ import "./App.css";
 import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
+import ContactPage from "./pages/ContactPage/ContactPage";
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
@@ -25,8 +26,8 @@ function App() {
             <PrivateRoute>
               <HomePage />
             </PrivateRoute>
-          }
-        />
+          }/>
+          <Route path="/details/:contactId" element={<ContactPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
       </Routes>

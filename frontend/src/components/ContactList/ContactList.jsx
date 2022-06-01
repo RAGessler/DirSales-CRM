@@ -6,6 +6,7 @@ import axios from "axios";
 import UpdateContact from '../UpdateContact/UpdateContact';
 import { URL_HOST } from "../../urlHost"
 import useAuth from "../../hooks/useAuth";
+import { Link } from 'react-router-dom';
 
 
 const ContactList = (props) =>{
@@ -55,9 +56,6 @@ const ContactList = (props) =>{
                     <tr>
                         <th>#</th>
                         <th>Name</th>
-                        <th>Phone Number</th>
-                        <th>Twitter</th>
-                        <th>Instagram</th>
                         <th>Type</th>
                         <th>Options</th>
                     </tr>
@@ -67,10 +65,7 @@ const ContactList = (props) =>{
                         return(
                             <tr key={element}>
                                 <td>{element+1}</td>
-                                <td> {contact.first_name} {contact.last_name}</td>
-                                <td>{contact.phone_number}</td>
-                                <td>{contact.twitter_handle}</td>
-                                <td>{contact.instagram_handle}</td>
+                                <td><Link to={`/details/${contact.id}`} key={user.id}>{contact.first_name} {contact.last_name}</Link></td>
                                 <td>{contact.tag}</td>
                                 <td>
                                     <Popup trigger={<button>Edit</button>} modal='true'>
