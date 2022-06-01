@@ -2,16 +2,21 @@ import React, {useEffect, useState} from 'react'
 import ContactFilter from '../ContactFilter/ContactFilter'
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-import ContactForm from '../ContactForm/ContactForm';
+import axios from "axios";
 import UpdateContact from '../UpdateContact/UpdateContact';
+import { URL_HOST } from "../../urlHost"
+import useAuth from "../../hooks/useAuth";
 
 
 const ContactList = (props) =>{
     const [displayContacts, setDisplayContacts] = useState(props.userContacts)
+    const [user, token] = useAuth();
 
     useEffect(()=>{
         setDisplayContacts(props.userContacts)
     },[props.userContacts])
+
+
 
     function filterContacts(searchTerm){
         let filteredContacts = props.userContacts.filter((contact)=>{
@@ -22,8 +27,26 @@ const ContactList = (props) =>{
             return false;
             }})
             setDisplayContacts(filteredContacts)
+    }
+
+    async function deleteContact(contactId){
+        try{
+            let response = await axios.delete(`${URL_HOST}/api/contacts/${contactId}/`,{
+                headers: {
+                    Authorization: 'Bearer ' + token
+                }
+            })
+            if (response.status === 204){
+                await props.getUserContacts(user.id)
+                alert('Success!')
+            }
         }
-    
+        catch (error){
+            console.log(error.message)
+            alert(error.message)
+        }
+    }
+
     return(
         <div>
             <ContactFilter submitSearch={filterContacts} />
@@ -53,6 +76,7 @@ const ContactList = (props) =>{
                                     <Popup trigger={<button>Edit</button>} modal='true'>
                                         <UpdateContact getUserContacts={props.getUserContacts} contact={contact}/>
                                     </Popup>
+                                    <button onClick={()=>deleteContact(contact.id)}>Delete</button>
                                 </td>
                             </tr>
                         )
