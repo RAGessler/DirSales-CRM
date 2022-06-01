@@ -55,6 +55,9 @@ const InteractionList = (props)=>{
                                         </div>
                                     </Popup>
                                 </td>
+                                <td>
+                                    {interaction.type}
+                                </td>
                             </tr>
                         )
                     })}
