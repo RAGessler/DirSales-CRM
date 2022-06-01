@@ -8,6 +8,7 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import { useParams } from "react-router-dom";
 import InteractionForm from "../../components/InteractionForm/InteractionForm";
+import NoteList from "../../components/NoteList/NoteList";
 
 const ContactPage = () =>{
     const {contactId} = useParams()
@@ -55,11 +56,14 @@ const ContactPage = () =>{
                 <li>Other Social Media: {contactObj.other_handle}</li>
                 <li>Type: {contactObj.tag}</li>
             </ul>
-            <div>
+            <div className="interactions">
                 <InteractionList interactions={contactInteractions} />
                 <Popup trigger={<button>Add Interaction</button>} modal='true'>
                 <InteractionForm getContactInteractions={fetchContactInteractions} contact={contactObj} />
                 </Popup>
+            </div>
+            <div className="notes">
+                {/* <NoteList contactId={contactId} /> */}
             </div>
         </div>
     )
