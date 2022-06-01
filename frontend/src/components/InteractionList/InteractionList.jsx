@@ -43,8 +43,18 @@ const InteractionList = (props)=>{
                     {displayInteractions.map((interaction, element)=>{
                         return(
                             <tr key={element}>
-                                <td>{interaction.date}</td>
-                                <td>{interaction.type}</td>
+                                <td>
+                                    <Popup trigger={<a>{interaction.date}</a>} modal="true">
+                                        <div>
+                                            <ul>
+                                                <li>{interaction.type}</li>
+                                                <li>{interaction.time}</li>
+                                                <li>{interaction.date}</li>
+                                            </ul>
+                                            <p>{interaction.notes}</p>
+                                        </div>
+                                    </Popup>
+                                </td>
                             </tr>
                         )
                     })}
