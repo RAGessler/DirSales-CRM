@@ -2,8 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { URL_HOST } from "../../urlHost"
-import ContactForm from "../../components/ContactForm/ContactForm";
-import ContactList from "../../components/ContactList/ContactList";
+import InteractionList from "../../components/InteractionList/InteractionList";
 import axios from "axios";
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
@@ -13,6 +12,7 @@ const ContactPage = () =>{
     const {contactId} = useParams()
     const [user, token] = useAuth();
     const [contactObj, setContactObj] = useState({})
+    const [contactInteractions, setContactInteractions]=useState([])
     
     const fetchContactDetails = async()=>{
         try{
@@ -26,9 +26,23 @@ const ContactPage = () =>{
             console.log(error.response.data)
         }
     }
+
+    const fetchContactInteractions = async()=>{
+        try{
+            let response = await axios.get(`${URL_HOST}/api/interactions/contact/${contactId}/`,{
+                headers:{
+                    Authorization: "Bearer " + token
+                },
+            });
+            setContactInteractions(response.data)
+        } catch(error){
+            console.log(error.response.data)
+        }
+    }
     
     useEffect(()=>{
         fetchContactDetails()
+        fetchContactInteractions()
     },[])
     return(
         <div>
@@ -41,7 +55,7 @@ const ContactPage = () =>{
                 <li>Type: {contactObj.tag}</li>
             </ul>
             <div>
-                
+                <InteractionList interactions={contactInteractions} />
             </div>
         </div>
     )
