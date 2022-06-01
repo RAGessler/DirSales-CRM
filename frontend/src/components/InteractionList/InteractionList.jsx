@@ -7,11 +7,31 @@ import UpdateContact from '../UpdateContact/UpdateContact';
 import { URL_HOST } from "../../urlHost"
 import useAuth from "../../hooks/useAuth";
 import { Link } from 'react-router-dom';
+import InteractionFilter from '../InteractionFilter/InteractionFilter';
 
 const InteractionList = (props)=>{
+    const [user, token] = useAuth()
+    const [displayInteractions, setDisplayInteractions]=useState(props.interactions)
+
+    useEffect(()=>{
+        setDisplayInteractions(props.interactions)
+    },[props.interactions])
+
+    function filterInteractions(searchTerm){
+        let filteredInteractions = props.interactions.filter((interaction)=>{
+            if (interaction.type.includes(searchTerm)||
+            interaction.date.includes(searchTerm)){
+                return true;
+            }
+            else{
+                return false;
+            }})
+            setDisplayInteractions(filteredInteractions)
+    }
 
     return(
         <div>
+            <InteractionFilter submitSearch={filterInteractions} />
             <table>
                 <thead>
                     <tr>
@@ -19,7 +39,7 @@ const InteractionList = (props)=>{
                     </tr>
                 </thead>
                 <tbody>
-                    {props.interactions.map((interaction, element)=>{
+                    {displayInteractions.map((interaction, element)=>{
                         return(
                             <tr key={element}>
                                 <td>{interaction.date}</td>
