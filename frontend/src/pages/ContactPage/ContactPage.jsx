@@ -9,6 +9,7 @@ import 'reactjs-popup/dist/index.css';
 import { useParams } from "react-router-dom";
 import InteractionForm from "../../components/InteractionForm/InteractionForm";
 import NoteList from "../../components/NoteList/NoteList";
+import NoteForm from "../../components/NoteForm/NoteForm";
 
 const ContactPage = () =>{
     const {contactId} = useParams()
@@ -79,6 +80,9 @@ const ContactPage = () =>{
             </div>
             <div className="notes">
                 <NoteList notes={contactNotes} />
+                <Popup trigger={<button>Add Interaction</button>} modal='true'>
+                <NoteForm getContactNotes={fetchContactNotes} contact={contactObj} />
+                </Popup>
             </div>
         </div>
     )
