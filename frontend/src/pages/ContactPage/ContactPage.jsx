@@ -15,8 +15,9 @@ const ContactPage = () =>{
     const [user, token] = useAuth();
     const [contactObj, setContactObj] = useState({})
     const [contactInteractions, setContactInteractions]=useState([])
+    const [contactNotes, setContactNotes]=useState([])
     
-    const fetchContactDetails = async()=>{
+    const fetchContactDetails = async(contactId)=>{
         try{
             let response = await axios.get(`${URL_HOST}/api/contacts/${contactId}/`,{
                 headers: {
@@ -25,6 +26,19 @@ const ContactPage = () =>{
             });
             setContactObj(response.data)
         } catch (error){
+            console.log(error.response.data)
+        }
+    }
+
+    const fetchContactNotes = async(contactId)=>{
+        try{
+            let response = await axios.get(`${URL_HOST}/api/notes/contact/${contactId}/`,{
+                headers:{
+                    Authorization: "Bearer " + token
+                },
+            });
+            setContactNotes(response.data)
+        } catch(error){
             console.log(error.response.data)
         }
     }
@@ -43,8 +57,9 @@ const ContactPage = () =>{
     }
     
     useEffect(()=>{
-        fetchContactDetails()
+        fetchContactDetails(contactId)
         fetchContactInteractions(contactId)
+        fetchContactNotes(contactId)
     },[])
     return(
         <div>
@@ -63,7 +78,7 @@ const ContactPage = () =>{
                 </Popup>
             </div>
             <div className="notes">
-                {/* <NoteList contactId={contactId} /> */}
+                <NoteList notes={contactNotes} />
             </div>
         </div>
     )
