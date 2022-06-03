@@ -10,6 +10,7 @@ import { useParams } from "react-router-dom";
 import InteractionForm from "../../components/InteractionForm/InteractionForm";
 import NoteList from "../../components/NoteList/NoteList";
 import NoteForm from "../../components/NoteForm/NoteForm";
+import TaskList from "../../components/TaskList/TaskList";
 
 const ContactPage = () =>{
     const {contactId} = useParams()
@@ -17,6 +18,7 @@ const ContactPage = () =>{
     const [contactObj, setContactObj] = useState({})
     const [contactInteractions, setContactInteractions]=useState([])
     const [contactNotes, setContactNotes]=useState([])
+    const [contactTasks, setContactTasks]=useState([])
     
     const fetchContactDetails = async(contactId)=>{
         try{
@@ -44,6 +46,19 @@ const ContactPage = () =>{
         }
     }
 
+    const fetchContactTasks = async(contactId)=>{
+        try{
+            let response = await axios.get(`${URL_HOST}/api/tasks/contact/${contactId}/`,{
+                headers:{
+                    Authorization: "Bearer " + token
+                },
+            });
+            setContactTasks(response.data)
+        }catch(error){
+            console.log(error.response.data)
+        }
+    }
+
     const fetchContactInteractions = async(contactId)=>{
         try{
             let response = await axios.get(`${URL_HOST}/api/interactions/contact/${contactId}/`,{
@@ -61,6 +76,7 @@ const ContactPage = () =>{
         fetchContactDetails(contactId)
         fetchContactInteractions(contactId)
         fetchContactNotes(contactId)
+        fetchContactTasks(contactId)
     },[])
     return(
         <div>
@@ -83,6 +99,10 @@ const ContactPage = () =>{
                 <Popup trigger={<button>Add Interaction</button>} modal='true'>
                 <NoteForm getContactNotes={fetchContactNotes} contact={contactObj} />
                 </Popup>
+            </div>
+            <div className="tasks">
+                <h6>tasks</h6>
+                <TaskList tasks={contactTasks} getContactTasks={fetchContactTasks} contact={contactObj} />
             </div>
         </div>
     )
