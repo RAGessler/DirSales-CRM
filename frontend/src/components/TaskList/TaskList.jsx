@@ -8,15 +8,21 @@ const TaskList = (props)=>{
         setDisplayTasks(props.tasks)
     },[props.tasks])
 
+    const isComplete = (task)=>{
+        if(task.complete===true){
+            return('Complete')
+        }
+        else{
+            return('Incomplete')
+        }
+    }
     return(
         <div>
             {displayTasks.map((task, element)=>{
                 return(
                     <div key={element.id}>
-                        <span>
                             <h5>{task.text}</h5>
-                            <h5>{task.complete}</h5>
-                        </span>
+                            <h5>{isComplete(task)}</h5>
                     </div>
                 )
             })}
