@@ -11,6 +11,7 @@ import InteractionForm from "../../components/InteractionForm/InteractionForm";
 import NoteList from "../../components/NoteList/NoteList";
 import NoteForm from "../../components/NoteForm/NoteForm";
 import TaskList from "../../components/TaskList/TaskList";
+import TaskForm from "../../components/TaskForm/TaskForm";
 
 const ContactPage = () =>{
     const {contactId} = useParams()
@@ -96,13 +97,19 @@ const ContactPage = () =>{
             </div>
             <div className="notes">
                 <NoteList notes={contactNotes} />
-                <Popup trigger={<button>Add Interaction</button>} modal='true'>
+                <Popup trigger={<button>Add Note</button>} modal='true'>
                 <NoteForm getContactNotes={fetchContactNotes} contact={contactObj} />
                 </Popup>
             </div>
             <div className="tasks">
                 <h6>tasks</h6>
                 <TaskList tasks={contactTasks} getContactTasks={fetchContactTasks} contact={contactObj} />
+                <Popup trigger={<button>Add Task</button>} modal='true'>
+                <TaskForm getContactTasks={fetchContactTasks} contact={contactObj} />
+                </Popup>
+            </div>
+            <div>
+                <h2>This is a spacer</h2>
             </div>
         </div>
     )
