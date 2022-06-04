@@ -76,7 +76,7 @@ const TaskList = (props)=>{
         <div>
             {displayTasks.map((task, element)=>{
                 return(
-                    <div key={element.id}>
+                    <div key={element}>
                             <h5>{task.text}</h5>
                             <h5>{isComplete(task)}</h5>
                             <div className='buttons'>

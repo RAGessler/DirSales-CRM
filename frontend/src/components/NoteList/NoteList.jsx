@@ -12,7 +12,7 @@ const NoteList = (props)=>{
         <div>
             {displayNotes.map((note, element)=>{
                 return(
-                    <div key={element.id}>
+                    <div key={element}>
                         <h4>{note.date}</h4>
                         <h6>{note.time}</h6>
                         <p>{note.text}</p>
