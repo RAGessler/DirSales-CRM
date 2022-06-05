@@ -12,6 +12,8 @@ import NoteList from "../../components/NoteList/NoteList";
 import NoteForm from "../../components/NoteForm/NoteForm";
 import TaskList from "../../components/TaskList/TaskList";
 import TaskForm from "../../components/TaskForm/TaskForm";
+import DateForm from "../../components/DateForm/DateForm";
+import DateList from "../../components/DateList/DateList";
 
 const ContactPage = () =>{
     const {contactId} = useParams()
@@ -20,6 +22,7 @@ const ContactPage = () =>{
     const [contactInteractions, setContactInteractions]=useState([])
     const [contactNotes, setContactNotes]=useState([])
     const [contactTasks, setContactTasks]=useState([])
+    const [contactDates, setContactDates]=useState([])
     
     const fetchContactDetails = async(contactId)=>{
         try{
@@ -73,11 +76,26 @@ const ContactPage = () =>{
         }
     }
     
+    const fetchContactDates = async(contactId)=>{
+        try{
+            let response = await axios.get(`${URL_HOST}/api/dates/contact/${contactId}/`,{
+                headers:{
+                    Authorization: "Bearer " + token
+                },
+            });
+            setContactDates(response.data)
+        } catch(error){
+            console.log(error.response.data)
+        }
+    }
+
+    
     useEffect(()=>{
         fetchContactDetails(contactId)
         fetchContactInteractions(contactId)
         fetchContactNotes(contactId)
         fetchContactTasks(contactId)
+        fetchContactDates(contactId)
     },[])
     return(
         <div>
@@ -106,6 +124,12 @@ const ContactPage = () =>{
                 <TaskList tasks={contactTasks} getContactTasks={fetchContactTasks} contact={contactObj} />
                 <Popup trigger={<button>Add Task</button>} modal='true'>
                 <TaskForm getContactTasks={fetchContactTasks} contact={contactObj} />
+                </Popup>
+            </div>
+            <div className="dates">
+                <DateList dates={contactDates} getContactDates={fetchContactDates} contact={contactObj}/>
+                <Popup trigger={<button>Schedule Event</button>} modal='true'>
+                    <DateForm contact={contactObj} getContactDates={fetchContactDates}/>
                 </Popup>
             </div>
             <div>
