@@ -12,7 +12,6 @@ import NoteList from "../../components/NoteList/NoteList";
 import NoteForm from "../../components/NoteForm/NoteForm";
 import TaskList from "../../components/TaskList/TaskList";
 import TaskForm from "../../components/TaskForm/TaskForm";
-import TaskUpdate from "../../components/TaskUpdate/TaskUpdate";
 
 const ContactPage = () =>{
     const {contactId} = useParams()

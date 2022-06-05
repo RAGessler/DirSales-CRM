@@ -7,8 +7,8 @@ const CalendarGrid = (props)=>{
     const [mappedEvents, setMappedEvents]=useState([])
 
 
-    function mapDates(){
-        let result = props.userDates.map((element)=>{
+    function mapDates(userDates){
+        let result = userDates.map((element)=>{
             return{title: element.title, date: element.date}
         });
         setMappedEvents(result);
@@ -20,7 +20,7 @@ const CalendarGrid = (props)=>{
         alert('hi mom!')
     }
     useEffect(()=>{
-        mapDates();
+        mapDates(props.userDates);
     },[props.userDates])
 
     return(
