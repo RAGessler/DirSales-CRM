@@ -51,10 +51,12 @@ const HomePage = () => {
     fetchUserContacts();
     fetchUserDates()
   }, [token]);
+
+
   return (
     <div className="return">
       <div className="contact-list">
-        <Popup trigger={<Button sx={{maxWidth: '10em'}}variant="outlined" startIcon={<AddIcon/>}>Add Contact</Button>} modal='true'>
+        <Popup trigger={<Button sx={{maxWidth: '10em'}}variant="outlined" startIcon={<AddIcon/>}>Contact</Button>} modal='true'>
           <ContactForm getUserContacts={fetchUserContacts} />
         </Popup>
         <ContactList userContacts={userContacts} getUserContacts={fetchUserContacts} />

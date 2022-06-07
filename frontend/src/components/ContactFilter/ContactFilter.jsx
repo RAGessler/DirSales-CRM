@@ -17,8 +17,9 @@ const ContactFilter = (props) => {
 
     return(
         <Box>
-            <FormControl fullWidth>
-                <Select name='filter-by' value={searchTerm} onChange={handleChange}>
+            <FormControl>
+                <InputLabel id='tag-filter'>Tag</InputLabel>
+                <Select labelId='filter-by' id='tag-filter-select' label='tag' value={searchTerm} onChange={handleChange}>
                     <MenuItem value={"Potential Client"}>Potential Client</MenuItem>
                     <MenuItem value={"Potential Partner"}>Potential Partner</MenuItem>
                     <MenuItem value={"Client"}>Client</MenuItem>

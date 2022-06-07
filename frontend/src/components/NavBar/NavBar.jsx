@@ -10,6 +10,10 @@ import Stack from '@mui/material/Stack';
 import Popup from "reactjs-popup";
 import 'reactjs-popup/dist/index.css';
 import ContactForm from "../ContactForm/ContactForm";
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import { IconButton } from "@mui/material";
+import LoginIcon from '@mui/icons-material/Login';
+import LogoutIcon from '@mui/icons-material/Logout';
 const Navbar = () => {
   const { logoutUser, user } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -18,22 +22,19 @@ const Navbar = () => {
       <ul>
         <li className="brand">
           <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-            <b>React/Django JWT</b>
+            <b>Personal RM</b>
           </Link>
         </li>
         <li>
-
-        </li>
-        <li>
           <Link to="/calendar">
-            <button>Calendar</button>
+            <IconButton variant="contained"><CalendarMonthIcon/></IconButton>
           </Link>
         </li>
         <li>
           {user ? (
-            <button onClick={logoutUser}>Logout</button>
+            <IconButton onClick={logoutUser}><LogoutIcon/></IconButton>
           ) : (
-            <button onClick={() => navigate("/login")}>Login</button>
+            <IconButton onClick={() => navigate("/login")}><LoginIcon/></IconButton>
           )}
         </li>
       </ul>

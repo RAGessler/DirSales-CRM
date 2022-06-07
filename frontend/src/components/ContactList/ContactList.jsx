@@ -10,6 +10,10 @@ import { Link } from 'react-router-dom';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/material/Button';
 import EditIcon from '@mui/icons-material/Edit';
+import ContactForm from '../ContactForm/ContactForm';
+import AddIcon from '@mui/icons-material/Add';
+import OpenInFullIcon from '@mui/icons-material/OpenInFull';
+import { IconButton } from '@mui/material';
 
 
 const ContactList = (props) =>{
@@ -71,13 +75,18 @@ const ContactList = (props) =>{
                         return(
                             <tr key={element}>
                                 <td>{element+1}</td>
-                                <td><Link to={`/details/${contact.id}`} key={user.id}>{contact.first_name} {contact.last_name}</Link></td>
+                                <td>{contact.first_name} {contact.last_name}</td>
                                 <td>{contact.tag}</td>
                                 <td>
-                                    <Popup trigger={<Button variant="outlined" startIcon={<EditIcon/>}>Edit</Button>} modal='true'>
+                                <Link style={{textDecoration: 'none'}} to={`/details/${contact.id}`} key={user.id}>
+                                        <IconButton variant='outlined'>
+                                            <OpenInFullIcon/>
+                                        </IconButton>
+                                    </Link>
+                                    <Popup trigger={<IconButton><EditIcon/></IconButton>} modal='true'>
                                         <UpdateContact getUserContacts={props.getUserContacts} contact={contact}/>
                                     </Popup>
-                                    <Button variant="outlined" startIcon={<DeleteIcon />} onClick={()=>deleteContact(contact.id)}>Delete</Button>
+                                    <IconButton onClick={()=>deleteContact(contact.id)}><DeleteIcon/></IconButton>
                                 </td>
                             </tr>
                         )
