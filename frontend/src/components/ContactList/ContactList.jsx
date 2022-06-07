@@ -24,9 +24,11 @@ const ContactList = (props) =>{
 
     function filterContacts(searchTerm){
         let filteredContacts = props.userContacts.filter((contact)=>{
-            if (contact.tag === searchTerm ||
-                searchTerm==='a'){
+            if (contact.tag == searchTerm){
             return true;
+            }
+            else if (searchTerm=="!"){
+                return true;
             }
             else{
             return false;

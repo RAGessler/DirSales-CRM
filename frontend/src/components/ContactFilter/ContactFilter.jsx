@@ -5,31 +5,28 @@ import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Select from '@mui/material/Select';
 
 const ContactFilter = (props) => {
     const [searchTerm, setSearchTerm] = useState('')
-    function handleSearch(event){
-        event.preventDefault();
-        let newSearchTerm = searchTerm
-        console.log(newSearchTerm)
-        props.submitSearch(newSearchTerm)
-    }
+
+    const handleChange = (event) => {
+        setSearchTerm(event.target.value)
+        props.submitSearch(event.target.value)
+      };
 
     return(
-        <div>
+        <Box>
             <h5>Filter</h5>
-            <FormControl fullWidth onSubmit={handleSearch}>
-                <label htmlFor="filter-by">Filter By:</label>
-                <Select type="text" name='filter-by' value={searchTerm} onChange={(event) => setSearchTerm(event.target.value)}>
-                    <MenuItem value="Potential Client">Potential Client</MenuItem>
-                    <MenuItem value="Potential Partnetr">Potential Partner</MenuItem>
-                    <MenuItem value="Client">Client</MenuItem>
-                    <MenuItem value='a'>No Filter</MenuItem>
+            <FormControl fullWidth>
+                <Select name='filter-by' value={searchTerm} onChange={handleChange}>
+                    <MenuItem value={"Potential Client"}>Potential Client</MenuItem>
+                    <MenuItem value={"Potential Partner"}>Potential Partner</MenuItem>
+                    <MenuItem value={"Client"}>Client</MenuItem>
+                    <MenuItem value={"!"}>No Filter</MenuItem>
                 </Select>
-                <Button variant='contained' startIcon={<SearchIcon/>} type='submit'>Search</Button>
             </FormControl>
-        </div>
+        </Box>
     )
 }
 export default ContactFilter
