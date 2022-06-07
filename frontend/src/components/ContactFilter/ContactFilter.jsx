@@ -8,7 +8,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 const ContactFilter = (props) => {
-    const [searchTerm, setSearchTerm] = useState('')
+    const [searchTerm, setSearchTerm] = useState('!')
 
     const handleChange = (event) => {
         setSearchTerm(event.target.value)
@@ -17,7 +17,6 @@ const ContactFilter = (props) => {
 
     return(
         <Box>
-            <h5>Filter</h5>
             <FormControl fullWidth>
                 <Select name='filter-by' value={searchTerm} onChange={handleChange}>
                     <MenuItem value={"Potential Client"}>Potential Client</MenuItem>

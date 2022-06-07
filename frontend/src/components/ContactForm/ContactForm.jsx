@@ -31,6 +31,7 @@ const ContactForm = (props) =>{
             })
             if (response.status === 201){
                 await props.getUserContacts(user.id)
+                alert('Contact Created!')
             }
         }
         catch (error){
