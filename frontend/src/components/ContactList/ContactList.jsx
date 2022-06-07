@@ -7,6 +7,9 @@ import UpdateContact from '../UpdateContact/UpdateContact';
 import { URL_HOST } from "../../urlHost"
 import useAuth from "../../hooks/useAuth";
 import { Link } from 'react-router-dom';
+import DeleteIcon from '@mui/icons-material/Delete';
+import Button from '@mui/material/Button';
+import EditIcon from '@mui/icons-material/Edit';
 
 
 const ContactList = (props) =>{
@@ -21,7 +24,8 @@ const ContactList = (props) =>{
 
     function filterContacts(searchTerm){
         let filteredContacts = props.userContacts.filter((contact)=>{
-            if (contact.tag === searchTerm){
+            if (contact.tag === searchTerm ||
+                searchTerm==='a'){
             return true;
             }
             else{
@@ -68,10 +72,10 @@ const ContactList = (props) =>{
                                 <td><Link to={`/details/${contact.id}`} key={user.id}>{contact.first_name} {contact.last_name}</Link></td>
                                 <td>{contact.tag}</td>
                                 <td>
-                                    <Popup trigger={<button>Edit</button>} modal='true'>
+                                    <Popup trigger={<Button variant="outlined" startIcon={<EditIcon/>}>Edit</Button>} modal='true'>
                                         <UpdateContact getUserContacts={props.getUserContacts} contact={contact}/>
                                     </Popup>
-                                    <button onClick={()=>deleteContact(contact.id)}>Delete</button>
+                                    <Button variant="outlined" startIcon={<DeleteIcon />} onClick={()=>deleteContact(contact.id)}>Delete</Button>
                                 </td>
                             </tr>
                         )
