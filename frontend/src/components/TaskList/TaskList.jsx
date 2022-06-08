@@ -5,6 +5,12 @@ import 'reactjs-popup/dist/index.css';
 import useAuth from '../../hooks/useAuth';
 import { URL_HOST } from '../../urlHost';
 import TaskUpdate from '../TaskUpdate/TaskUpdate';
+import { Button } from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
+import { IconButton } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import DoneIcon from '@mui/icons-material/Done';
+import { Box } from '@mui/material';
 const TaskList = (props)=>{
     const [user, token]=useAuth();
     const [displayTasks, setDisplayTasks]=useState(props.tasks)
@@ -31,7 +37,7 @@ const TaskList = (props)=>{
                 })
                 if(response.status===202){
                     props.getContactTasks(props.contact.id)
-                    alert('Success!')
+                    alert(`Task marked as Complete!`)
                 }
             }catch(error){
                 console.log(error.message)
@@ -46,7 +52,7 @@ const TaskList = (props)=>{
                 })
                 if(response.status===202){
                     props.getContactTasks(props.contact.id)
-                    alert('Success')
+                    alert('Task marked as Incomplete!')
                 }
             }catch(error){
                 console.log(error.message)
@@ -76,17 +82,17 @@ const TaskList = (props)=>{
         <div>
             {displayTasks.map((task, element)=>{
                 return(
-                    <div key={element}>
-                            <h5>{task.text}</h5>
+                    <Box sx={{border:'2px', borderStyle:'solid', borderRadius:'10%', padding:'1em', margin:'1em'}}  key={element}>
+                            <h4>{task.text}</h4>
                             <h5>{isComplete(task)}</h5>
                             <div className='buttons'>
-                                <Popup trigger={<button>Edit</button>} modal='true'>
+                                <IconButton onClick={()=>completeTask(task)}><DoneIcon/></IconButton>
+                                <Popup trigger={<IconButton><EditIcon/></IconButton>} modal='true'>
                                     <TaskUpdate getContactTasks={props.getContactTasks} task={task} contact={props.contact}/>
                                 </Popup>
-                                <button onClick={()=>completeTask(task)}>Toggle Completion</button>
-                                <button onClick={()=>deleteTask(task.id)}>Delete</button>
+                                <IconButton onClick={()=>deleteTask(task.id)}><DeleteIcon/></IconButton>
                             </div>
-                    </div>
+                    </Box>
                 )
             })}
         </div>

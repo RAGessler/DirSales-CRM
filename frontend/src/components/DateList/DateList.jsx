@@ -5,7 +5,10 @@ import 'reactjs-popup/dist/index.css';
 import useAuth from '../../hooks/useAuth';
 import { URL_HOST } from '../../urlHost';
 import DateUpdate from '../DateUpdate/DateUpdate';
-
+import { IconButton } from '@mui/material';
+import Edit from '@mui/icons-material/Edit';
+import Delete from '@mui/icons-material/Delete';
+import { Box } from '@mui/system';
 const DateList = (props)=>{
     const [user, token]=useAuth();
     const [displayDates, setDisplayDates]=useState(props.dates)
@@ -36,23 +39,19 @@ const DateList = (props)=>{
         <div>
             {displayDates.map((date, element)=>{
                 return(
-                    <div key={element}>
-                            <h5>{date.title}</h5>
-                            <h6>{date.date}</h6>
+                    <Box sx={{border:'2px', borderStyle:'solid', borderRadius:'10%', padding:'1em', margin:'1em'}} key={element}>
+                            <h4>{date.title}</h4>
+                            <h4>{date.date}</h4>
                             <div className='buttons'>
-                                <Popup trigger={<button>Edit</button>} modal='true'>
+                                <Popup trigger={<IconButton><Edit/></IconButton>} modal='true'>
                                     <DateUpdate getContactDates={props.getContactDates} date={date} contact={props.contact}/>
                                 </Popup>
-                                <button onClick={()=>deleteDate(date.id)}>Delete</button>
+                                <IconButton onClick={()=>deleteDate(date.id)}><Delete/></IconButton>
                             </div>
-                    </div>
+                    </Box>
                 )
             })}
         </div>
     )
 }
 export default DateList
-
-//props
-//getContactDates
-//contact

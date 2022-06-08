@@ -101,7 +101,7 @@ const ContactPage = () =>{
         fetchContactDates(contactId)
     },[])
     return(
-        <div>
+        <Box>
             <ul>
                 <li>Name: {contactObj.first_name} {contactObj.last_name}</li>
                 <li>Phone Number: {contactObj.phone_number}</li>
@@ -110,49 +110,36 @@ const ContactPage = () =>{
                 <li>Other Social Media: {contactObj.other_handle}</li>
                 <li>Type: {contactObj.tag}</li>
             </ul>
-            <Box sx={{maxWidth:"25%"}}>
-                <InteractionList interactions={contactInteractions} />
-                <Popup trigger={<Button sx={{maxWidth:'100%', marginX:'', paddingX:'50%' }} variant="contained" startIcon={<AddIcon/>}>Interaction</Button>} modal='true'>
-                <InteractionForm getContactInteractions={fetchContactInteractions} contact={contactObj} />
-                </Popup>
+            <Box sx={{display:'flex', flexDirection: 'row', justifyContent: 'center'}}>
+                <Box sx={{maxWidth:"30%", border:'2px', borderColor:'black', borderStyle:'solid', borderRadius:'1em', padding:'1em', marginX:'3em'}}>
+                    <h3>Interactions</h3>
+                    <InteractionList interactions={contactInteractions} />
+                    <Popup trigger={<Button sx={{width:'100%', marginX:'', paddingX:'50%' }} variant="contained" startIcon={<AddIcon/>}>Interaction</Button>} modal='true'>
+                    <InteractionForm getContactInteractions={fetchContactInteractions} contact={contactObj} />
+                    </Popup>
+                </Box>
+                <Box name='Tasks' sx={{maxWidth:"25%", border:'2px', borderColor:'black', borderStyle:'solid', borderRadius:'1em', padding:'1em', marginX:'3em'}}>
+                    <h3>Tasks</h3>
+                    <TaskList tasks={contactTasks} getContactTasks={fetchContactTasks} contact={contactObj} />
+                    <Popup trigger={<Button sx={{width:'100%', marginX:'', paddingX:'50%' }} variant="contained" startIcon={<AddIcon/>}>Task</Button>} modal='true'>
+                    <TaskForm getContactTasks={fetchContactTasks} contact={contactObj} />
+                    </Popup>
+                </Box>
+                <Box sx={{maxWidth:"30%", border:'2px', borderColor:'black', borderStyle:'solid', borderRadius:'1em', padding:'1em', marginX:'3em'}}>
+                    <h3>Schedule</h3>
+                    <DateList dates={contactDates} getContactDates={fetchContactDates} contact={contactObj}/>
+                    <Popup trigger={<Button sx={{width:'100%', marginX:'', paddingX:'50%' }} variant="contained" startIcon={<AddIcon/>}>Event</Button>} modal='true'>
+                        <DateForm contact={contactObj} getContactDates={fetchContactDates}/>
+                    </Popup>
+                </Box>
             </Box>
-            <div className="notes">
+            <Box sx={{maxWidth:"80%", border:'2px', borderColor:'black', borderStyle:'solid', borderRadius:'1em', padding:'1em', marginX:'auto', marginBottom:'5em', marginTop:'2em'}}>
                 <NoteList notes={contactNotes} />
-                <Popup trigger={<button>Add Note</button>} modal='true'>
+                <Popup trigger={<Button sx={{width:'100%', marginX:'', paddingX:'50%' }} variant="contained" startIcon={<AddIcon/>}>Note</Button>} modal='true'>
                 <NoteForm getContactNotes={fetchContactNotes} contact={contactObj} />
                 </Popup>
-            </div>
-            <div className="tasks">
-                <h6>tasks</h6>
-                <TaskList tasks={contactTasks} getContactTasks={fetchContactTasks} contact={contactObj} />
-                <Popup trigger={<button>Add Task</button>} modal='true'>
-                <TaskForm getContactTasks={fetchContactTasks} contact={contactObj} />
-                </Popup>
-            </div>
-            <div className="dates">
-                <DateList dates={contactDates} getContactDates={fetchContactDates} contact={contactObj}/>
-                <Popup trigger={<button>Schedule Event</button>} modal='true'>
-                    <DateForm contact={contactObj} getContactDates={fetchContactDates}/>
-                </Popup>
-            </div>
-            <div>
-                <h2>This is a spacer</h2>
-            </div>
-        </div>
+            </Box>
+        </Box>
     )
 }
 export default ContactPage
-
-//detailed list for contact details
-{/* <dl>
-    <dt>Name</dt>
-    <dd>{contactObj.first_name} {contactObj.last_name}</dd>
-    <dt>Phone Number</dt>
-    <dd>{contactObj.phone_number}</dd>
-    <dt>Twitter</dt>
-    <dd>{contactObj.twitter_handle}</dd>
-    <dt>Instagram</dt>
-    <dd>{contactObj.instagram_handle}</dd>
-    <dt>Other Social Media</dt>
-    <dd>{contactObj.other_handle}</dd>
-</dl> */}

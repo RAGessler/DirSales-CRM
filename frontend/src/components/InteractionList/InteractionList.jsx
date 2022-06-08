@@ -33,7 +33,7 @@ const InteractionList = (props)=>{
     }
 
     return(
-        <TableContainer sx={{border:'2px', borderStyle:'solid', borderRadius:'1em'}}>
+        <TableContainer>
             <Table>
                 <TableHead>
                     <TableRow>
