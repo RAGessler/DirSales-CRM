@@ -17,6 +17,11 @@ import DateList from "../../components/DateList/DateList";
 import { Button } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import { Box } from "@mui/system";
+import PhoneIcon from '@mui/icons-material/Phone';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import PublicIcon from '@mui/icons-material/Public';
+import TagIcon from '@mui/icons-material/Tag';
 
 const ContactPage = () =>{
     const {contactId} = useParams()
@@ -102,14 +107,16 @@ const ContactPage = () =>{
     },[])
     return(
         <Box>
+            <Box sx={{margin:'2em', }}>
+            <center><h2 style={{padding:'1em'}}>{contactObj.first_name} {contactObj.last_name}</h2></center>
             <ul>
-                <li>Name: {contactObj.first_name} {contactObj.last_name}</li>
-                <li>Phone Number: {contactObj.phone_number}</li>
-                <li>Twitter: {contactObj.twitter_handle}</li>
-                <li>Instagram: {contactObj.instagram_handle}</li>
-                <li>Other Social Media: {contactObj.other_handle}</li>
-                <li>Type: {contactObj.tag}</li>
+                <li style={{display:'inline'}}> <PhoneIcon/> {contactObj.phone_number}</li>
+                <li><TwitterIcon/> {contactObj.twitter_handle}</li>
+                <li><InstagramIcon/> {contactObj.instagram_handle}</li>
+                <li><PublicIcon/> {contactObj.other_handle}</li>
+                <li><TagIcon/> {contactObj.tag}</li>
             </ul>
+            </Box>
             <Box sx={{display:'flex', flexDirection: 'row', justifyContent: 'center'}}>
                 <Box sx={{maxWidth:"30%", border:'2px', borderColor:'black', borderStyle:'solid', borderRadius:'1em', padding:'1em', marginX:'3em'}}>
                     <h3>Interactions</h3>
