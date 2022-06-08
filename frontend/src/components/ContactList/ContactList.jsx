@@ -8,13 +8,19 @@ import { URL_HOST } from "../../urlHost"
 import useAuth from "../../hooks/useAuth";
 import { Link } from 'react-router-dom';
 import DeleteIcon from '@mui/icons-material/Delete';
-import Button from '@mui/material/Button';
 import EditIcon from '@mui/icons-material/Edit';
-import ContactForm from '../ContactForm/ContactForm';
-import AddIcon from '@mui/icons-material/Add';
 import OpenInFullIcon from '@mui/icons-material/OpenInFull';
 import { IconButton } from '@mui/material';
-
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import ContactForm from '../ContactForm/ContactForm';
+import { Button } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
 
 const ContactList = (props) =>{
     const [displayContacts, setDisplayContacts] = useState(props.userContacts)
@@ -59,25 +65,28 @@ const ContactList = (props) =>{
     }
 
     return(
-        <div>
-            <ContactFilter submitSearch={filterContacts} />
-            <table>
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Name</th>
-                        <th>Type</th>
-                        <th>Options</th>
-                    </tr>
-                </thead>
-                <tbody>
+        <TableContainer sx={{maxWidth:'80%', margin:'auto', marginBottom:'5em', border:'2px', borderStyle:'solid', borderRadius:'1em'}}  >
+            <Table aria-label='simple table'>
+                <TableHead>
+                    <TableRow>
+                        <TableCell>#</TableCell>
+                        <TableCell align='center'>Full Name</TableCell>
+                        <TableCell align='center'><ContactFilter submitSearch={filterContacts} /></TableCell>
+                        <TableCell align='center'>Options <br />
+                                <Popup trigger={<Button sx={{maxWidth: '20em'}}variant="contained" startIcon={<AddIcon/>}>Contact</Button>} modal='true'>
+                                    <ContactForm getUserContacts={props.getUserContacts} />
+                                </Popup>
+                        </TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
                     {displayContacts.map((contact, element)=>{
                         return(
-                            <tr key={element}>
-                                <td>{element+1}</td>
-                                <td>{contact.first_name} {contact.last_name}</td>
-                                <td>{contact.tag}</td>
-                                <td>
+                            <TableRow key={element} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                                <TableCell>{element+1}</TableCell>
+                                <TableCell align='center'>{contact.first_name} {contact.last_name}</TableCell>
+                                <TableCell align='center'>{contact.tag}</TableCell>
+                                <TableCell align='center'>
                                 <Link style={{textDecoration: 'none'}} to={`/details/${contact.id}`} key={user.id}>
                                         <IconButton variant='outlined'>
                                             <OpenInFullIcon/>
@@ -87,13 +96,13 @@ const ContactList = (props) =>{
                                         <UpdateContact getUserContacts={props.getUserContacts} contact={contact}/>
                                     </Popup>
                                     <IconButton onClick={()=>deleteContact(contact.id)}><DeleteIcon/></IconButton>
-                                </td>
-                            </tr>
+                                </TableCell>
+                            </TableRow>
                         )
                     })}
-                </tbody>
-            </table>
-        </div>
+                </TableBody>
+            </Table>
+        </TableContainer>
     )
 }
 export default ContactList

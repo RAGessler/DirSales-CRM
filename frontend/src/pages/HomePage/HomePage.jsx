@@ -10,6 +10,7 @@ import 'reactjs-popup/dist/index.css';
 import AddIcon from '@mui/icons-material/Add';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
+import { Box } from "@mui/system";
 
 const HomePage = () => {
   // The "user" value from this Hook contains the decoded logged in user information (username, first name, id)
@@ -55,12 +56,7 @@ const HomePage = () => {
 
   return (
     <div className="return">
-      <div className="contact-list">
-        <Popup trigger={<Button sx={{maxWidth: '10em'}}variant="outlined" startIcon={<AddIcon/>}>Contact</Button>} modal='true'>
-          <ContactForm getUserContacts={fetchUserContacts} />
-        </Popup>
         <ContactList userContacts={userContacts} getUserContacts={fetchUserContacts} />
-      </div>
     </div>
   );
 };
