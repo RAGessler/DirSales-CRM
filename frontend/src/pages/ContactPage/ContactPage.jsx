@@ -14,6 +14,9 @@ import TaskList from "../../components/TaskList/TaskList";
 import TaskForm from "../../components/TaskForm/TaskForm";
 import DateForm from "../../components/DateForm/DateForm";
 import DateList from "../../components/DateList/DateList";
+import { Button } from "@mui/material";
+import AddIcon from '@mui/icons-material/Add';
+import { Box } from "@mui/system";
 
 const ContactPage = () =>{
     const {contactId} = useParams()
@@ -107,12 +110,12 @@ const ContactPage = () =>{
                 <li>Other Social Media: {contactObj.other_handle}</li>
                 <li>Type: {contactObj.tag}</li>
             </ul>
-            <div className="interactions">
+            <Box sx={{maxWidth:"25%"}}>
                 <InteractionList interactions={contactInteractions} />
-                <Popup trigger={<button>Add Interaction</button>} modal='true'>
+                <Popup trigger={<Button sx={{maxWidth:'100%', marginX:'', paddingX:'50%' }} variant="contained" startIcon={<AddIcon/>}>Interaction</Button>} modal='true'>
                 <InteractionForm getContactInteractions={fetchContactInteractions} contact={contactObj} />
                 </Popup>
-            </div>
+            </Box>
             <div className="notes">
                 <NoteList notes={contactNotes} />
                 <Popup trigger={<button>Add Note</button>} modal='true'>

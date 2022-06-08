@@ -2,6 +2,13 @@ import React, {useEffect, useState} from 'react'
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import InteractionFilter from '../InteractionFilter/InteractionFilter';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 
 const InteractionList = (props)=>{
     const [displayInteractions, setDisplayInteractions]=useState(props.interactions)
@@ -16,6 +23,9 @@ const InteractionList = (props)=>{
             interaction.date.includes(searchTerm)){
                 return true;
             }
+            else if (searchTerm=="!"){
+                return true;
+            }
             else{
                 return false;
             }})
@@ -23,20 +33,19 @@ const InteractionList = (props)=>{
     }
 
     return(
-        <div>
-            <InteractionFilter submitSearch={filterInteractions} />
-            <table>
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Type</th>
-                    </tr>
-                </thead>
-                <tbody>
+        <TableContainer sx={{border:'2px', borderStyle:'solid', borderRadius:'1em'}}>
+            <Table>
+                <TableHead>
+                    <TableRow>
+                        <TableCell><h4>Date</h4></TableCell>
+                        <TableCell align='right'>{<InteractionFilter submitSearch={filterInteractions} />}</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
                     {displayInteractions.map((interaction, element)=>{
                         return(
-                            <tr key={element}>
-                                <td>
+                            <TableRow key={element}>
+                                <TableCell>
                                     <Popup trigger={<a>{interaction.date}</a>} modal="true">
                                         <div>
                                             <ul>
@@ -47,16 +56,16 @@ const InteractionList = (props)=>{
                                             <p>{interaction.notes}</p>
                                         </div>
                                     </Popup>
-                                </td>
-                                <td>
+                                </TableCell>
+                                <TableCell align='center'>
                                     {interaction.type}
-                                </td>
-                            </tr>
+                                </TableCell>
+                            </TableRow>
                         )
                     })}
-                </tbody>
-            </table>
-        </div>
+                </TableBody>
+            </Table>
+        </TableContainer>
     )
 }
 export default InteractionList
