@@ -3,6 +3,7 @@ import useAuth from "../../hooks/useAuth";
 import useCustomForm from "../../hooks/useCustomForm"
 import axios from "axios";
 import { URL_HOST } from "../../urlHost"
+import Button from '@mui/material/Button';
 
 let initialValues = {
     user: "",
@@ -41,22 +42,27 @@ const ContactForm = (props) =>{
 
     return (
 
-        <form className="form" onSubmit={handleSubmit}>
+        <form className="form" onSubmit={handleSubmit} style={{padding:'1em', borderStyle:'inset'}}>
             <label htmlFor="first_name">First Name</label>
-            <input type="text" name="first_name" value={formData.first_name} onChange={handleInputChange} />
+            <input style={{maxWidth:'60%', borderColor:'black', borderRadius:'1em'}} type="text" name="first_name" value={formData.first_name} onChange={handleInputChange} />
             <label htmlFor="last_name">Last Name</label>
-            <input type="text" name="last_name" value={formData.last_name} onChange={handleInputChange} />
+            <input style={{maxWidth:'60%',borderColor:'black', borderRadius:'1em'}}type="text" name="last_name" value={formData.last_name} onChange={handleInputChange} />
             <label htmlFor="phone_number">Phone Number</label>
-            <input type="text" name="phone_number" value={formData.phone_number} onChange={handleInputChange} />
+            <input style={{maxWidth:'60%',borderColor:'black', borderRadius:'1em'}}type="text" name="phone_number" value={formData.phone_number} onChange={handleInputChange} />
             <label htmlFor="twitter_handle">Twitter @</label>
-            <input type="text" name="twitter_handle" value={formData.twitter_handle} onChange={handleInputChange} />
+            <input style={{maxWidth:'60%',borderColor:'black', borderRadius:'1em'}}type="text" name="twitter_handle" value={formData.twitter_handle} onChange={handleInputChange} />
             <label htmlFor="instagram_handle">Instagram Handle</label>
-            <input type="text" name="instagram_handle" value={formData.instagram_handle} onChange={handleInputChange} />
+            <input style={{maxWidth:'60%',borderColor:'black', borderRadius:'1em'}}type="text" name="instagram_handle" value={formData.instagram_handle} onChange={handleInputChange} />
             <label htmlFor="other_handle">Other Social Media</label>
-            <input type="text" name="other_handle" value={formData.other_handle} onChange={handleInputChange} />
+            <input style={{maxWidth:'60%',borderColor:'black', borderRadius:'1em'}}type="text" name="other_handle" value={formData.other_handle} onChange={handleInputChange} />
             <label htmlFor="tag">Group</label>
-            <input type="text" name="tag" value={formData.tag} onChange={handleInputChange} />
-            <button type="submit">Create</button>
+            <select style={{maxWidth:'60%',borderColor:'black', borderRadius:'1em'}} name="tag" id="tag" onChange={handleInputChange} value={formData.tag}>
+                <option>Select Tag</option>
+                <option value={"Client"}>Client</option>
+                <option value={"Potential Client"}>Potential Client</option>
+                <option value={"Potential Partner"}>Potential Partner</option>
+            </select>
+            <Button type="submit">Create</Button>
         </form>
 
     )
