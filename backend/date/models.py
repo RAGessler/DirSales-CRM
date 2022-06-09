@@ -9,5 +9,5 @@ class Date(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
     time = models.TimeField(auto_now=False, auto_now_add=False)
-    text = models.CharField(max_length=255)
+    text = models.CharField(max_length=255, blank=True)
     date = models.DateField()

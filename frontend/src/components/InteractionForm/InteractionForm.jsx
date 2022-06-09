@@ -3,9 +3,10 @@ import useAuth from "../../hooks/useAuth";
 import useCustomForm from "../../hooks/useCustomForm"
 import axios from "axios";
 import { URL_HOST } from "../../urlHost"
-
+import Button from '@mui/material/Button';
 let initialValues={
     user:"",
+    type:"",
     contact:"",
     date:"",
     time:"",
@@ -37,16 +38,21 @@ const InteractionForm = (props)=>{
         }
     }
     return(
-        <form className="interactionForm" onSubmit={handleSubmit}>
-            <label>Type</label>
-            <input type="text" name="type" value={formData.type} onChange={handleInputChange}/>
+        <form style={{padding:'1em', borderStyle:'inset'}} className="form" onSubmit={handleSubmit}>
+            <select style={{maxWidth:'60%',borderColor:'black', borderRadius:'1em'}} name="type" id="type" onChange={handleInputChange} value={formData.type}>
+                <option>Select Type</option>
+                <option value={"Phone Call"}>Phone Call</option>
+                <option value={"Text/DM"}>Text/DM</option>
+                <option value={"Video"}>Video</option>
+                <option value={"F2F"}>F2F</option>
+            </select>
             <label>Date</label>
-            <input type="date" name="date" value={formData.date} onChange={handleInputChange}/>
+            <input style={{maxWidth:'20%', borderColor:'black', borderRadius:'1em'}} type="date" name="date" value={formData.date} onChange={handleInputChange}/>
             <label>Time</label>
-            <input type="time" name="time" value={formData.time} onChange={handleInputChange} />
+            <input style={{maxWidth:'20%', borderColor:'black', borderRadius:'1em'}} type="time" name="time" value={formData.time} onChange={handleInputChange} />
             <label>Notes</label>
-            <input type="text" name="notes" value={formData.notes} onChange={handleInputChange} />
-            <button type="submit">Create</button>
+            <input style={{maxWidth:'50%', borderColor:'black', borderRadius:'1em'}} type="text" name="notes" value={formData.notes} onChange={handleInputChange} />
+            <Button type="submit">Create</Button>
         </form>
     )
 }

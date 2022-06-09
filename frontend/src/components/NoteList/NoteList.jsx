@@ -23,7 +23,7 @@ const NoteList = (props)=>{
                             </div>
                         </Box>
                         <Box sx={{borderStyle:'inset', padding:'1em', margin:'1em', borderRadius:'1em'}}>
-                        <p>Note:{<br></br>}{note.text}</p>
+                        <p>{note.text}</p>
                         </Box>
                     </Box>
                 )

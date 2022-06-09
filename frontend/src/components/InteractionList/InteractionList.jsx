@@ -47,13 +47,13 @@ const InteractionList = (props)=>{
                             <TableRow key={element}>
                                 <TableCell>
                                     <Popup trigger={<a>{interaction.date}</a>} modal="true">
-                                        <div>
+                                        <div style={{padding:'1em', borderStyle:'inset'}}>
                                             <ul>
                                                 <li>{interaction.type}</li>
                                                 <li>{interaction.time}</li>
                                                 <li>{interaction.date}</li>
                                             </ul>
-                                            <p>{interaction.notes}</p>
+                                            <center><p>{interaction.notes}</p></center>
                                         </div>
                                     </Popup>
                                 </TableCell>

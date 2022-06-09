@@ -3,6 +3,8 @@ import useAuth from "../../hooks/useAuth";
 import useCustomForm from "../../hooks/useCustomForm"
 import axios from "axios";
 import { URL_HOST } from "../../urlHost"
+import Button from '@mui/material/Button';
+
 
 let initialValues={
     text: "",
@@ -32,10 +34,10 @@ const TaskForm=(props)=>{
         }
     }
     return(
-        <form className="task-form" onSubmit={handleSubmit}>
+        <form className="form" style={{padding:'1em', borderStyle:'inset'}} onSubmit={handleSubmit}>
             <label htmlFor="text">Enter Task:</label>
-            <input type="text" name="text" value={formData.text} onChange={handleInputChange} />
-            <button type="submit">Create Task</button>
+            <input style={{maxWidth:'60%', borderColor:'black', borderRadius:'1em'}} type="text" name="text" value={formData.text} onChange={handleInputChange} />
+            <Button type="submit">Create Task</Button>
         </form>
     )
 

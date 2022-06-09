@@ -7,7 +7,7 @@ class Contact(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    phone_number = models.CharField(max_length=16)
+    phone_number = models.CharField(max_length=16, blank=True)
     twitter_handle = models.CharField(max_length=255, blank=True)
     instagram_handle = models.CharField(max_length=255, blank=True)
     other_handle = models.CharField(max_length=255, blank=True)

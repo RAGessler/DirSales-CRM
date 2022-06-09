@@ -3,6 +3,7 @@ import useAuth from "../../hooks/useAuth";
 import useCustomForm from "../../hooks/useCustomForm"
 import axios from "axios";
 import { URL_HOST } from "../../urlHost"
+import Button from '@mui/material/Button';
 
 let initialValues={
     title:'',
@@ -34,12 +35,14 @@ const DateForm=(props)=>{
         }
     }
     return(
-        <form className="Date-form" onSubmit={handleSubmit}>
-            <input type="text" name="title" value={formData.title} onChange={handleInputChange} />
-            <input type='time' name="time" value={formData.time} onChange={handleInputChange} />
-            <input type='date' name="date" value={formData.date} onChange={handleInputChange} />
-            <input type='text' name="text" value={formData.text} onChange={handleInputChange} />
-            <button type="submit">Create Event</button>
+        <form className="form" style={{padding:'1em', borderStyle:'inset'}} onSubmit={handleSubmit}>
+            <label htmlFor="title">Title</label>
+            <input style={{maxWidth:'60%',borderColor:'black', borderRadius:'1em'}} type="text" name="title" value={formData.title} onChange={handleInputChange} />
+            <label htmlFor="time">Time</label>
+            <input style={{maxWidth:'20%',borderColor:'black', borderRadius:'1em'}} type='time' name="time" value={formData.time} onChange={handleInputChange} />
+            <label htmlFor="date">Date</label>
+            <input style={{maxWidth:'20%',borderColor:'black', borderRadius:'1em'}} type='date' name="date" value={formData.date} onChange={handleInputChange} />
+            <Button type="submit">Create Event</Button>
         </form>
     )
 
