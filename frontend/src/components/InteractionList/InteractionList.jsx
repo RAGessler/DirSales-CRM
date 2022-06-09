@@ -9,7 +9,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-
+import InteractionFilterDate from '../InteractionFilterDate/InteractionFilterDate';
 const InteractionList = (props)=>{
     const [displayInteractions, setDisplayInteractions]=useState(props.interactions)
 
@@ -37,7 +37,7 @@ const InteractionList = (props)=>{
             <Table>
                 <TableHead>
                     <TableRow>
-                        <TableCell><h4>Date</h4></TableCell>
+                        <TableCell>{<InteractionFilterDate submitSearch={filterInteractions} />}</TableCell>
                         <TableCell align='right'>{<InteractionFilter submitSearch={filterInteractions} />}</TableCell>
                     </TableRow>
                 </TableHead>

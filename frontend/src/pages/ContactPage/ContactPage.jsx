@@ -118,21 +118,21 @@ const ContactPage = () =>{
             </ul>
             </Box>
             <Box sx={{display:'flex', flexDirection: 'row', justifyContent: 'center'}}>
-                <Box sx={{width:"25%", border:'2px', borderColor:'black', borderStyle:'solid', borderRadius:'1em', padding:'1em', marginX:'3em'}}>
+                <Box sx={{width:"27%", border:'2px', borderColor:'black', borderStyle:'solid', borderRadius:'1em', padding:'1em', marginX:'3em'}}>
                     <h3>Interactions</h3>
                     <InteractionList interactions={contactInteractions} />
                     <Popup trigger={<Button sx={{width:'100%', marginX:'', paddingX:'50%' }} variant="contained" startIcon={<AddIcon/>}>Interaction</Button>} modal='true'>
                     <InteractionForm getContactInteractions={fetchContactInteractions} contact={contactObj} />
                     </Popup>
                 </Box>
-                <Box name='Tasks' sx={{width:"25%", border:'2px', borderColor:'black', borderStyle:'solid', borderRadius:'1em', padding:'1em', marginX:'3em'}}>
+                <Box name='Tasks' sx={{width:"27%", border:'2px', borderColor:'black', borderStyle:'solid', borderRadius:'1em', padding:'1em', marginX:'3em'}}>
                     <h3>Tasks</h3>
                     <TaskList tasks={contactTasks} getContactTasks={fetchContactTasks} contact={contactObj} />
                     <Popup trigger={<Button sx={{width:'100%', marginX:'', paddingX:'50%' }} variant="contained" startIcon={<AddIcon/>}>Task</Button>} modal='true'>
                     <TaskForm getContactTasks={fetchContactTasks} contact={contactObj} />
                     </Popup>
                 </Box>
-                <Box sx={{width:"25%", border:'2px', borderColor:'black', borderStyle:'solid', borderRadius:'1em', padding:'1em', marginX:'3em'}}>
+                <Box sx={{width:"27%", border:'2px', borderColor:'black', borderStyle:'solid', borderRadius:'1em', padding:'1em', marginX:'3em'}}>
                     <h3>Schedule</h3>
                     <DateList dates={contactDates} getContactDates={fetchContactDates} contact={contactObj}/>
                     <Popup trigger={<Button sx={{width:'100%', marginX:'', paddingX:'50%' }} variant="contained" startIcon={<AddIcon/>}>Event</Button>} modal='true'>
