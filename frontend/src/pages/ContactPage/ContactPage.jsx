@@ -107,7 +107,7 @@ const ContactPage = () =>{
     },[])
     return(
         <Box>
-            <Box sx={{margin:'2em', }}>
+            <Box sx={{margin:'2em', marginTop:'5em'}}>
             <center><h2 style={{padding:'1em'}}>{contactObj.first_name} {contactObj.last_name}</h2></center>
             <ul>
                 <li style={{display:'inline'}}> <PhoneIcon/> {contactObj.phone_number}</li>

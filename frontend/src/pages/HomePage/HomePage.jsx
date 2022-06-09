@@ -55,7 +55,8 @@ const HomePage = () => {
 
 
   return (
-    <div className="return">
+    <div style={{marginTop:'7em'}} className="return">
+      <center><h2>Your Contacts</h2></center>
         <ContactList userContacts={userContacts} getUserContacts={fetchUserContacts} />
     </div>
   );

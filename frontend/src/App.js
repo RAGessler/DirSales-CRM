@@ -28,7 +28,11 @@ function App() {
               <HomePage />
             </PrivateRoute>
           }/>
-          <Route path="/calendar" element={<CalendarPage />} />
+          <Route path="/calendar" element={
+            <PrivateRoute>
+              <CalendarPage />
+            </PrivateRoute>
+          } />
           <Route path="/details/:contactId" element={<ContactPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />

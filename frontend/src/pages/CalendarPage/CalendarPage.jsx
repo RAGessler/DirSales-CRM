@@ -33,8 +33,8 @@ const CalendarPage=()=>{
     },[])
 
     return(
-        <div>
-            <h2>Your Calendar</h2>
+        <div style={{maxWidth:'80%', margin:'auto', marginBottom:'5em', marginTop:'10em'}}>
+            <center><h2><span style={{color:'blue'}}>{user.username}'s</span> Calendar</h2></center>
             <CalendarGrid userDates={userDates} />
         </div>
     )

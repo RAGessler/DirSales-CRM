@@ -20,14 +20,14 @@ const Navbar = () => {
   return (
     <div className="navBar">
       <ul>
-        <li className="brand">
-          <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-            <b>Personal RM</b>
-          </Link>
-        </li>
         <li>
           <Link to="/calendar">
             <IconButton variant="contained"><CalendarMonthIcon/></IconButton>
+          </Link>
+        </li>
+        <li className="brand">
+          <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+            <b>Relationship Manager</b>
           </Link>
         </li>
         <li>
