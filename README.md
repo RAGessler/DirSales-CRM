@@ -1,5 +1,5 @@
 # DirSales-CRM
-Capstone Project for Dev Code Camp.  Inspired by some friends of mine who have small businesses or are direct sellers. 
+Capstone Project for Dev Code Camp.  Inspired by some friends of mine who own small businesses and wanted to manage their network better without using a large or bulky CRM.
 
 # ReactDjango_JWT_StarterCode
 
