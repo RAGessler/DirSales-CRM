@@ -1,0 +1,29 @@
+version: '3.9'
+
+services:
+  backend:
+    container_name: backend
+    image: ragessler/personalcrmbackend-prod:latest
+    ports:
+      - "80:8000"
+    command: sh ./entrypoint.sh
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    container_name: db
+    image: mysql
+    environment:
+      MYSQL_DATABASE: 'personal_crm'
+      MYSQL_ROOT_PASSWORD: 'password1@'
+    command: --default-authentication-plugin=mysql_native_password
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+    volumes:
+      - production_db_volume:/var/lib/mysql
+
+volumes:
+  production_db_volume:

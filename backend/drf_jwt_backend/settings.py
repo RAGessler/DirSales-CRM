@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'interaction',
     'date',
     'task',
-    'phone_field'
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,41 @@
+version: '3.9'
+
+services:
+  backend:
+    container_name: backend
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "8085:8000"
+    command: sh ./entrypoint.sh
+    depends_on:
+      db:
+        condition: service_healthy
+
+
+  db:
+    container_name: db
+    image: arm64v8/mysql:oracle
+    environment:
+      MYSQL_DATABASE: 'personal_crm'
+      MYSQL_ROOT_PASSWORD: 'password1@'
+    command: --default-authentication-plugin=mysql_native_password
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+#     volumes:
+#       - production_db_volume:/var/lib/mysql
+
+# volumes:
+#   production_db_volume:
+
+
+#Volumes DO NOT WORK LOCALLY on ARM M1
+#Volumes ONLY work in Deployment
+#Uncomment lines 26 - 30 for production(AWS EB2)
+#When building a Dev envornment, be sure to create a docker image using:
+# $ docker build --platform linux/amd64 -t dockerID/imagename .
+# the reason for this is that the sql image cannon run on arm64 but backend image can, /
+# if they run on two different archatectures, they will not connect to eachother. 
