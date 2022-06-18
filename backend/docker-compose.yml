@@ -3,7 +3,7 @@ version: '3.9'
 services:
   backend:
     container_name: backend
-    image: ragessler/personalcrmbackend-prod:latest
+    image: ragessler/crmbackend-demo
     ports:
       - "80:8000"
     command: sh ./entrypoint.sh
