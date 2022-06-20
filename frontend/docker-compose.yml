@@ -1,0 +1,11 @@
+version: '3.9'
+
+services:
+  personalcrm:
+    container_name: personalcrm
+    image: ragessler/crmfrontend-demo:latest
+    platform: linux/arm64
+    volumes:
+      - .:/app
+    ports:
+      - "80:80"
