@@ -14,6 +14,10 @@ const LoginPage = () => {
     loginUser
   );
 
+  useEffect(()=>{
+    alert('User: Demo \nPass: Password1@ \nOr Register a new account')
+  },[])
+  
   useEffect(() => {
     if (isServerError) {
       reset();
