@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'interaction',
     'date',
     'task',
+    'ebhealthcheck.apps.EBHealthCheckConfig'
 ]
 
 MIDDLEWARE = [
