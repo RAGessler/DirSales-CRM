@@ -23,7 +23,23 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['personalcrmbackend.us-east-1.elasticbeanstalk.com']
+import requests
+
+
+def get_ec2_instance_ip():
+    # Try to obtain the IP address of the current EC2 instance in AWS
+    try:
+        ip = requests.get(
+          'http://169.254.169.254/latest/meta-data/local-ipv4',
+          timeout=0.01
+        ).text
+    except requests.exceptions.ConnectionError:
+        return None
+
+    return ip
+
+AWS_LOCAL_IP = get_ec2_instance_ip()
+ALLOWED_HOSTS = [ AWS_LOCAL_IP, 'http://personalcrmbackend.us-east-1.elasticbeanstalk.com', 'personalcrmbackend.us-east-1.elasticbeanstalk.com' ,'localhost']
 
 AUTH_USER_MODEL = 'authentication.User'
 
@@ -45,7 +61,6 @@ INSTALLED_APPS = [
     'interaction',
     'date',
     'task',
-    'ebhealthcheck.apps.EBHealthCheckConfig'
 ]
 
 MIDDLEWARE = [

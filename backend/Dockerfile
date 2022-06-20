@@ -9,6 +9,7 @@ ADD ./ ./
 
 RUN python -m pip install --upgrade pip
 RUN pip install -r requirements.txt
+RUN python3 -m pip install requests
 
 RUN adduser -u 1234 --disabled-password --gecos "" appuser && chown -R appuser /app
 USER appuser
