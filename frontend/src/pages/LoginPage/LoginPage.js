@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import "./LoginPage.css";
 import { Button } from "@mui/material";
 import { TextField } from "@mui/material";
+import DemoAccounts from "../../components/DemoLoginList/DemoLoginList";
 
 const LoginPage = () => {
   const { loginUser, isServerError } = useContext(AuthContext);
@@ -14,9 +15,9 @@ const LoginPage = () => {
     loginUser
   );
 
-  useEffect(()=>{
-    alert('User: Demo \nPass: Password1@ \nOr Register a new account')
-  },[])
+  // useEffect(()=>{
+  //   alert('User: Demo \nPass: Password1@ \nOr Register a new account')
+  // },[])
   
   useEffect(() => {
     if (isServerError) {
@@ -51,6 +52,7 @@ const LoginPage = () => {
         <Link style={{textDecoration:'none'}} to="/register"><Button>Register</Button></Link>
         <Button type="submit" variant="contained">Login</Button>
       </form>
+      <DemoAccounts />
     </div>
   );
 };
