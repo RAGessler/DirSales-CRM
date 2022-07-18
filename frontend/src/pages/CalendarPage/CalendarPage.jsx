@@ -2,11 +2,8 @@ import React from "react";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { URL_HOST } from "../../urlHost"
-import InteractionList from "../../components/InteractionList/InteractionList";
 import axios from "axios";
-import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-import { useParams } from "react-router-dom";
 import CalendarGrid from "../../components/CalendarGrid/CalendarGrid";
 
 const CalendarPage=()=>{
