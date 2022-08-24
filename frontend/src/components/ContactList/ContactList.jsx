@@ -17,10 +17,8 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 import ContactForm from '../ContactForm/ContactForm';
-import { Button } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
+
 
 const ContactList = (props) =>{
     const [displayContacts, setDisplayContacts] = useState(props.userContacts)
@@ -73,9 +71,10 @@ const ContactList = (props) =>{
                         <TableCell align='center'>Full Name</TableCell>
                         <TableCell align='center'><ContactFilter submitSearch={filterContacts} /></TableCell>
                         <TableCell align='center'>Options <br />
-                                <Popup trigger={<Button sx={{maxWidth: '20em'}}variant="contained" startIcon={<AddIcon/>}>Contact</Button>} modal='true'>
+                                {/* <Popup trigger={<Button sx={{maxWidth: '20em'}}variant="contained" startIcon={<AddIcon/>}>Contact</Button>} modal='true'>
                                     <ContactForm getUserContacts={props.getUserContacts} />
-                                </Popup>
+                                </Popup> */}
+                                <ContactForm getUserContacts={props.getUserContacts} />
                         </TableCell>
                     </TableRow>
                 </TableHead>
