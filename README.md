@@ -1,4 +1,1 @@
-# PersonalCRM
-The development version of my Personal-CRM
-
-A complete overhaul will be coming soon!
+This project initially started as my 10 day capstone project for DevCodeCamp,  Since then I have learned a ton of new tech and pratices so I will likley be completely revamping this project with all of my new knowledge and may even use a BaaS.
