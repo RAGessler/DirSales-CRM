@@ -1,1 +1,3 @@
 This project initially started as my 10 day capstone project for DevCodeCamp,  Since then I have learned a ton of new tech and pratices so I will likley be completely revamping this project with all of my new knowledge and may even use a BaaS.
+
+MUI <Select> issue will not be fixed without a major overhaul of the frontend. As this is being caused by something deep in the starter code (Provided by DCC to help every student have a common base to start off of.) that I cannot seem to find.  
